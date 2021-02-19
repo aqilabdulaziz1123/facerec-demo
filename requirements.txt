@@ -5,3 +5,4 @@ xlrd
 opencv-python
 xlsxwriter
 openpyxl
+multiprocessing
