@@ -50,11 +50,6 @@ def f(filename):
             pass
 
 
-for files in os.listdir('./db'):
-    image = face_recognition.load_image_file('./db/' + files)
-    knownface.append(face_recognition.face_encodings(image)[0])
-    name.append(files.split('.')[0])
-
 # for i in range(x):
 #     for files in os.listdir('./tes'):
 #         start = time()
@@ -72,13 +67,18 @@ for files in os.listdir('./db'):
 
 if __name__ == '__main__':
     if len(sys.argv) <= 1:
-        print('usage = py tes.py [number of photo to process (multiple of 8)] [how many processor used]')
+        print('usage = py tes.py [number of photo to process (multiple of 6)] [how many processor used]')
+        exit(0)
     if len(sys.argv) > 1:
-        x = int(sys.argv[1])/8
+        x = int(sys.argv[1])//6
     if len(sys.argv) > 2:
         y = int(sys.argv[2])
-    files = os.listdir('./tes')
-    for i in range(x-1):
+    for files in os.listdir('./db'):
+        image = face_recognition.load_image_file('./db/' + files)
+        knownface.append(face_recognition.face_encodings(image)[0])
+        name.append(files.split('.')[0])
+    files = []
+    for i in range(x):
         for filename in os.listdir('./tes'):
             files.append(filename)
     print(files)
